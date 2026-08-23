@@ -1,0 +1,35 @@
+name: Build Fortis Desktop UI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Windows Executable
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore Fortis.UI/Fortis.UI.csproj
+
+    - name: Publish Single-File Executable
+      # This command explicitly publishes for Windows 64-bit, trims unused code, and bundles everything into one .exe
+      run: dotnet publish Fortis.UI/Fortis.UI.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true -o ./publish
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Fortis-Windows-Exe
+        path: ./publish/Fortis.UI.exe

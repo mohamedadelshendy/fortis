@@ -1,0 +1,33 @@
+@inherits LayoutComponentBase
+
+<div class="app-container">
+    <div class="sidebar">
+        <div class="brand">FORTIS</div>
+        
+        <div class="nav-item @(ActiveTab == "encrypt" ? "active" : "")" @onclick='() => SetTab("encrypt")'>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Encrypt File
+        </div>
+
+        <div class="nav-item @(ActiveTab == "decrypt" ? "active" : "")" @onclick='() => SetTab("decrypt")'>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+            Decrypt File
+        </div>
+    </div>
+
+    <div class="content">
+        <CascadingValue Value="ActiveTab">
+            @Body
+        </CascadingValue>
+    </div>
+</div>
+
+@code {
+    private string ActiveTab { get; set; } = "encrypt";
+
+    private void SetTab(string tab)
+    {
+        ActiveTab = tab;
+        StateHasChanged();
+    }
+}
