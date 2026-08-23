@@ -1,13 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <!-- Changed to Exe temporarily so you can see error messages in the console if it crashes -->
+    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     
     <!-- Optimize for size during publishing -->
-    <PublishTrimmed>true</PublishTrimmed>
+    <!-- Trimming often breaks Blazor and DI, setting to false to fix startup crashes -->
+    <PublishTrimmed>false</PublishTrimmed>
     <PublishSingleFile>true</PublishSingleFile>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
