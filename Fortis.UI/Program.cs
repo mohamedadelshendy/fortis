@@ -17,7 +17,7 @@ class Program
         
         // Make sure to replace these with the actual Supabase URL and Anon Key in production
         appBuilder.Services.AddSingleton(new SupabaseClient(
-            supabaseUrl: "https://awzghbocboefbbtwczqr.supabase.co",
+            supabaseUrl: "YOUR_SUPABASE_URL",
             supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY"
         ));
 
