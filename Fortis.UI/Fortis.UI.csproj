@@ -18,7 +18,8 @@
 
   <ItemGroup>
     <!-- Photino is an ultra-lightweight wrapper to host Blazor in a native OS window -->
-    <PackageReference Include="Photino.Blazor" Version="2.6.0" />
+    <!-- Upgraded to a version compatible with .NET 8 -->
+    <PackageReference Include="Photino.Blazor" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
